@@ -1,37 +1,26 @@
+import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
+
 import styles from './FeedbackOptions.module.css';
 
 const FeedbackOptions = ({ options, onLeaveFeedback }) => {
-  return (
-    <ul className={styles.feedbackBtnList}>
-      <li className={styles.feedbackBtnListItem}>
-        <button
-          type="button"
-          className={styles.feedbackBtn}
-          onClick={() => onLeaveFeedback('good')}
-        >
-          Good
-        </button>
-      </li>
-      <li className={styles.feedbackBtnListItem}>
-        <button
-          type="button"
-          className={styles.feedbackBtn}
-          onClick={() => onLeaveFeedback('neutral')}
-        >
-          Neutral
-        </button>
-      </li>
-      <li className={styles.feedbackBtnListItem}>
-        <button
-          type="button"
-          className={styles.feedbackBtn}
-          onClick={() => onLeaveFeedback('bad')}
-        >
-          Bad
-        </button>
-      </li>
-    </ul>
-  );
+  const buttons = options.map(option => (
+    <li className={styles.feedbackBtnListItem} key={nanoid()}>
+      <button
+        type="button"
+        className={styles.feedbackBtn}
+        onClick={() => onLeaveFeedback(option)}
+      >
+        {option}
+      </button>
+    </li>
+  ));
+  return <ul className={styles.feedbackBtnList}>{buttons}</ul>;
 };
 
 export default FeedbackOptions;
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
