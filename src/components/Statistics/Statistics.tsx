@@ -1,8 +1,16 @@
-import PropTypes from 'prop-types';
+import React from 'react';
 
 import styles from './statistics.module.css';
 
-const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
+interface IProps {
+  good: number;
+  neutral: number;
+  bad: number;
+  total: number;
+  positivePercentage: string;
+}
+
+const Statistics = ({ good, neutral, bad, total, positivePercentage }: IProps) => {
   const positivePercentageValue = good ? positivePercentage : '0';
 
   return (
@@ -19,11 +27,3 @@ const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
 };
 
 export default Statistics;
-
-Statistics.propTypes = {
-  good: PropTypes.number.isRequired,
-  neutral: PropTypes.number.isRequired,
-  bad: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
-  positivePercentage: PropTypes.string.isRequired,
-};

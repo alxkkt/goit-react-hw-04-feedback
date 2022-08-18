@@ -1,9 +1,14 @@
+import React from 'react';
 import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
 
 import styles from './FeedbackOptions.module.css';
 
-const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+interface IProps {
+  options: string[];
+  onLeaveFeedback: (param: string) => void;
+}
+
+const FeedbackOptions = ({ options, onLeaveFeedback }: IProps) => {
   const buttons = options.map(option => (
     <li className={styles.feedbackBtnListItem} key={nanoid()}>
       <button
@@ -19,8 +24,3 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
 };
 
 export default FeedbackOptions;
-
-FeedbackOptions.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onLeaveFeedback: PropTypes.func.isRequired,
-};
